@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>mission_14</title>
+  </head>
+<body>
+
+  <label>请输入北京今天空气质量：<input id="aqi-input" type="text"></label>
+  <button id="button">确认填写</button>
+
+  <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
+
+<script type="text/javascript">
+
+(function() {
+  /*	
+  在注释下方写下代码
+  给按钮button绑定一个点击事件
+  在事件处理函数中
+  获取aqi-input输入的值，并显示在aqi-display中
+  */
+  var input = document.getElementById("aqi-input");//输入
+  var btn = document.getElementById("button");  //按钮
+  var display = document.getElementById("aqi-display");//展示
+  addEvent(btn,function(){
+    display.childNodes[0].nodeValue = input.value;
+  });
+
+  function addEvent(ele,func) {
+    // mozilla type
+    // target.addEventListener(type, listener, useCapture); 
+
+    // target： 文档节点、document、window 或 XMLHttpRequest。 
+    // type： 字符串，事件名称，不含“on”，比如“click”、“mouseover”、“keydown”等。 
+    // listener ：实现了 EventListener 接口或者是 JavaScript 中的函数。 
+    // useCapture ：是否使用捕捉，一般用 false 。例如：document.getElementById("testText").addEventListener("keydown", function (event) { alert(event.keyCode); }, false); 
+
+    if (ele.addEventListener) {
+      ele.addEventListener("click",func);
+    // IE
+    // target.attachEvent(type, listener); 
+    // target： 文档节点、document、window 或 XMLHttpRequest。 
+    // type:符串，事件名称，含“on”，比如“onclick”、“onmouseover”、“onkeydown”等。 
+    // listener:实现了 EventListener 接口或者是 JavaScript 中的函数。 例如：document.getElementById("txt").attachEvent("onclick",function(event){alert(event.keyCode);}); 
+    } else if (ele.attachEvent) {
+      ele.attachEvent("onclick",func);
+    } else {
+      ele["onclick"] = func;
+    }
+  }
+
+})();
+
+</script>
+</body>
+</html>
