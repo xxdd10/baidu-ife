@@ -23,7 +23,6 @@ var aqiData = [
   ["成都", 90],
   ["西安", 100]
 ];
-
 (function () {
 
   /*
@@ -44,14 +43,29 @@ var aqiData = [
     }
   }
 
+  //冒泡排序
+  var tempArr = new Array();
+  for (var i = 0; i < newArray.length; i++) {
+    for (var j = i+1; j< newArray.length; j++) {
+      if (newArray[i][1] < newArray[j][1]) {
+        var tempArr = newArray[j];
+        newArray[j] =  newArray[i];
+        newArray[i] = tempArr;
+      }
+    }
+  }
+
+
   var obj;
+  var j = 0;
   for(var i = 0; i < newArray.length; i++) {
     obj = newArray[i];
     if (obj) {
       if ( obj[1] > 60) {
-           html += "<li>第" + sort[1] + "名：" + obj[0] +"，" + obj[1] + "</li>";
+           html += "<li>第" + sort[j] + "名：" + obj[0] +"，" + obj[1] + "</li>";
       }
     }
+    j++;
   }
 
   ul.innerHTML = html;
